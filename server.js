@@ -10,7 +10,7 @@ const mongoose=require('mongoose');
 
 const routerIndex=require('./router/indexRouter')
 
-mongoose.connect('mongodb+srv://alberto:mongo-123@cluster0.lvmqn.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser:true});
+mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser:true});
 
 const db=mongoose.connection;
 
