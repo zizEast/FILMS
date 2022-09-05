@@ -8,8 +8,10 @@ const app=express();
 const expressLayouts=require('express-ejs-layouts');
 const mongoose=require('mongoose');
 
-const routerIndex=require('./router/indexRouter')
+const indexRouter=require('./router/indexRouter')
+const authorsRouter=require('./router/authorsRouter')
 
+const methodOverride=require('method-override');
 mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser:true});
 
 const db=mongoose.connection;
@@ -22,10 +24,11 @@ app.set('views',__dirname+'/views')
 app.set('layout','layouts/layout')
 app.use(expressLayouts);
 
+app.use(express.urlencoded({extended:false}))
+app.use(methodOverride('_method'))
 
-
-app.use(routerIndex)
-
+app.use(indexRouter)
+app.use('/authors',authorsRouter);
 
 
 app.listen(process.env.PORT||3000)
