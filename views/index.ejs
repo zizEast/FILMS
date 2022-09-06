@@ -1,11 +1,20 @@
+<h1>Search Autors</h1>
+<form action="/authors" method="get">
+    <label for="name">Nome</label>
+    <input type="text" name="name" id="name" value="<%=searchOptions.name%>">
+    <button type="submit">Cerca</button>
+</form>
+<br>
 <%authors.forEach(author=>{ %>
-    <div>
+    <div class="mb-2">
         <p><%=author.name %></p>
-        <form action="/authors/<%=author.id%>?_method=DELETE" method="post">
-            <button type="submit">cancella</button>
+        <form action="/authors/<%=author.id%>?_method=DELETE" method="post" >
+            <button type="submit" >cancella</button>
+            <a href="authors/showAuthor">Mostra</a>
+            <a href="authors/edit">Modifica</a>
         </form>
     </div>
 <%}) %>
-<form action="/authors/tutti" method="post">
+<form action="/authors/tutti" method="post" class="mt-4">
         <button type="submit">cancella tutti</button>
 </form>
